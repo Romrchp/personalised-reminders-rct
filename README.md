@@ -63,6 +63,9 @@ The MyFoodRepo LLM Test project follows a modular monolithic architecture. The s
 
 - 📄 [web_app.py](web_app.py): Main file to run in order to create and use the Flask application created in this project.
 
+- 📄 [Master Thesis Report](Master_Thesis): Final report of the master thesis.
+
+
 
 ### Data Flow
 1. **User Inputs**: Users interact with the system through SMS.
