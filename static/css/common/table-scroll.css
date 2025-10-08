@@ -1,0 +1,180 @@
+/* Table scrolling styles */
+.table-wrapper {
+    position: relative;
+    margin: 20px 0;
+    border-radius: 8px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+    background: white;
+}
+
+.table-container {
+    overflow-x: auto;
+    max-height: 600px;
+    overflow-y: auto;
+    border-radius: 8px;
+}
+
+/* Fixed header styling */
+.table-container thead {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.table-container th {
+    background-color: #f8f9fa;
+    position: sticky;
+    top: 0;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+/* Table styling improvements */
+.data-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+.data-table th, .data-table td {
+    padding: 12px 15px;
+    border-bottom: 1px solid #e6e9ed;
+}
+
+.data-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.data-table tbody tr:hover {
+    background-color: #f5f8fa;
+}
+
+/* Pagination styles */
+.pagination {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.pagination button {
+    background-color: #de7012;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.pagination button:hover:not(:disabled) {
+    background-color: #c45e0a;
+}
+
+.pagination button:disabled {
+    background-color: #e6e9ed;
+    color: #a0a0a0;
+    cursor: not-allowed;
+}
+
+#page-indicator {
+    font-size: 0.9rem;
+    color: #5d6778;
+}
+
+.per-page-selector {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.per-page-selector label {
+    font-size: 0.9rem;
+    color: #5d6778;
+}
+
+.per-page-selector select {
+    padding: 6px;
+    border-radius: 4px;
+    border: 1px solid #e6e9ed;
+}
+
+/* Search functionality */
+.search-container {
+    margin-bottom: 15px;
+}
+
+.search-box {
+    display: flex;
+    max-width: 400px;
+}
+
+.search-box input {
+    flex: 1;
+    padding: 10px 15px;
+    border: 1px solid #e6e9ed;
+    border-radius: 4px 0 0 4px;
+    font-size: 0.9rem;
+}
+
+.search-box button {
+    background-color: #de7012;
+    color: white;
+    border: none;
+    padding: 0 15px;
+    border-radius: 0 4px 4px 0;
+    cursor: pointer;
+}
+
+.hidden-row {
+    display: none !important;
+}
+
+/* Export buttons */
+.export-container {
+    margin-left: auto;
+}
+
+.export-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.export-btn {
+    background-color: #34495e;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 0.9rem;
+}
+
+.export-btn:hover {
+    background-color: #2c3e50;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .pagination {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .per-page-selector {
+        margin-top: 10px;
+    }
+    
+    .export-container {
+        margin-top: 10px;
+        margin-left: 0;
+    }
+}

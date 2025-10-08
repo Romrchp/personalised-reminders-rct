@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Users | MyFoodRepo</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/common/general.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/common/tables.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/common/cards.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/pages/meals.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+</head>
+<body>
+
+    <header class="header">
+        <div class="header-content">
+            <img src="{{ url_for('static', filename='images/mfr_logo.png') }}" alt="MyFoodRepo Logo" class="header-image">
+            <p class="header-text">Users - Consulting user {{ user.id }}</p>
+        </div>
+    </header>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <div class="flash-messages">
+                {% for category, message in messages %}
+                    <div class="flash flash-{{ category }}">{{ message }}</div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% endwith %}
+    
+
+    </body>
+
+
+</html>

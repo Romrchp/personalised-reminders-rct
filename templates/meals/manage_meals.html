@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Reminders | MyFoodRepo</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/common/general.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/common/tables.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/common/table-scroll.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    {% with navbar_title="Manage Meals" %}
+        {% include 'utils/navbar.html' %}
+    {% endwith %}
+
+
+    <section id = "data-toggle" class="page-section">
+        <h2 class="main-title">Current <span>Meals Data</span></h2>
+        <div id="pagination-controls"></div>
+            {% if all_meals %}
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Meal Description</th>
+                        <th>User</th>
+                        <th>Nutritional Information</th>
+                        <th>Date</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for meal in all_meals %}
+                    <tr>
+                        <td>{{ meal.id }}</td>
+                        <td>{{ meal.description }}</td>
+                        <td>{{ meal.user_id }}</td>
+                        <td>{{ meal.nutrients }}</td>
+                        <td>{{ meal.datetime }}</td>
+                        <td>
+                            <form action="{{ url_for('meals.remove_meal', meal_id=meal.id) }}" method="post" class="delete-form" style="display:inline;">
+                                <button type="submit" class="control-button stop" style="padding: 5px 10px; font-size: 0.8rem;">
+                                    <i class="fas fa-trash"></i> Remove Meal
+                                </button>
+                            </form>
+                            <form action="{{ url_for('meals.edit_meal', meal_id=meal.id) }}" method="post" style="display:inline;">
+                                <button type="submit" class="control-button edit" style="padding: 5px 10px; font-size: 0.8rem;">
+                                    <i class="fas fa-search"></i> Browse meal details
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            {% else %}
+            <p>No meals currently available.</p>
+            {% endif %}
+    </section>
+
+    <script src="{{ url_for('static', filename='js/general/general.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/general/tables.js') }}"></script>
+</body>
+</html>

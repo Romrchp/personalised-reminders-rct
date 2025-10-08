@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Meals | MyFoodRepo</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/common/general.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/common/tables.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/common/table-scroll.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    {% with navbar_title="Messages monitoring" %}
+        {% include 'utils/navbar.html' %}
+    {% endwith %}
+
+    <section id = "data-toggle" class="page-section">
+        <h2 class="main-title">Current <span>Messages Data</span></h2>
+        <div id="pagination-controls"></div>
+            {% if all_messages %}
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Sender</th>
+                        <th>Related user</th>
+                        <th>Message content</th>
+                        <th>Date & Time</th>
+                        <th>Reminder ?</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for message in all_messages %}
+                    <tr>
+                        <td>{{ message.id }}</td>
+                        <td>{{ message.role }}</td>
+                        <td>{{ message.user_id }}</td>
+                        <td>{{ message.content }}</td>
+                        <td>{{ message.datetime }}</td>
+                        <td>{{ message.reminder_id }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            {% else %}
+            <p>No messages registered yet.</p>
+            {% endif %}
+    </section>
+
+    <script src="{{ url_for('static', filename='js/general/general.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/general/tables.js') }}"></script>
+</body>
+</html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Users | MyFoodRepo</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/common/general.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/common/tables.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/common/table-scroll.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    {% with navbar_title="Manage participants" %}
+        {% include 'utils/navbar.html' %}
+    {% endwith %}
+    
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <div class="flash-messages">
+                {% for category, message in messages %}
+                    <div class="flash flash-{{ category }}">{{ message }}</div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% endwith %}
+
+    <section class="page-section">
+        <h2 class="main-title">Cohort <span>Participants</span></h2>
+        <div id="pagination-controls"></div>
+        {% if all_users %}
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Gender</th>
+                    <th>Age</th>
+                    <th>Language</th>
+                    <th>Diet Goal</th>
+                    <th>Study Group</th>
+                    <th>Last Meal Log</th>
+                    <th>Withdrawn user</th>
+                    <th>Ended user</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for user in all_users %}
+                <tr>
+                    <td>{{ user.id }}</td>
+                    <td>{{ user.gender }}</td>
+                    <td>{{ user.age }}</td>
+                    <td>{{ user.language }}</td>
+                    <td>{{ user.diet_goal }}</td>
+                    <td>{{ user.study_group }}</td>
+                    <td>{{ user.last_meal_log }}</td>
+                    <td>{{ user.withdrawal }}</td>
+                    <td>{{ user.study_ended }}</td>
+                    <td>
+                        <form action="{{ url_for('users.start_specific_conv', user_id=user.id) }}" method="post" class= "confirm-form" style="display:inline;">
+                            <input type="hidden" name="phone_number" value="{{ user.phone_number }}">
+                            <button type="submit" class="control-button start" style="padding: 5px 10px; font-size: 0.8rem;">
+                                <i class="fas fa-sms"></i> Send welcome message
+                            </button>
+                        </form>
+                        <form action="{{ url_for('users.end_specific_conv', user_id=user.id) }}" method="post" class= "confirm-form" style="display:inline;">
+                            <input type="hidden" name="phone_number" value="{{ user.phone_number }}">
+                            <button type="submit" class="control-button stop" style="padding: 5px 10px; font-size: 0.8rem;">
+                                <i class="fas fa-sms"></i> Send goodbye message
+                            </button>
+                        </form>
+                        <form action="{{ url_for('users.update_participation', user_id=user.id) }}" class = "participation-form" method="post" style="display:inline;">
+                            <input type="hidden" name="phone_number" value="{{ user.phone_number }}">
+                            <input type="hidden" name="withdrawal" value="{{ 'False' if user.withdrawal else 'True' }}">
+                            <button type="submit" class="control-button update" style="padding: 5px 10px; font-size: 0.8rem;">
+                                <i class="fas fa-user-check"></i> Update Status
+                            </button>
+                        </form>
+                        <form action="{{ url_for('users.update_ending', user_id=user.id) }}" class = "participation-form" method="post" style="display:inline;">
+                            <input type="hidden" name="phone_number" value="{{ user.phone_number }}">
+                            <input type="hidden" name="ending" value="{{ 'False' if user.study_ended else 'True' }}">
+                            <button type="submit" class="control-button update" style="padding: 5px 10px; font-size: 0.8rem;">
+                                <i class="fas fa-user-check"></i> Update Ending
+                            </button>
+                        </form>
+
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <p>No users in the study yet.</p>
+        {% endif %}
+    </section>
+
+    <script src="{{ url_for('static', filename='js/general/general.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/general/tables.js') }}"></script>
+
+</body>
+</html>

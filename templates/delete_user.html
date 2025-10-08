@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Users | MyFoodRepo</title>
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/common/general.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/common/tables.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/common/cards.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/pages/users.css') }}">
+</head>
+
+<body>
+
+    <header class="header">
+        <div class="header-content">
+            <img src="{{ url_for('static', filename='images/mfr_logo.png') }}" alt="MyFoodRepo Logo" class="header-image">
+            <p class="header-text">Deleting a user</p>
+        </div>
+    </header>
+
+    <div class="warning-ribbon">
+      <div class="warning-content">
+        <div class="warning-icon">
+          <i class="fas fa-exclamation-triangle"></i>
+        </div>
+        <p><strong>Warning:</strong> Once you delete a user, all their data (including reminders, messages, and meals) will be permanently removed from the database. Are you sure you want to proceed?</p>
+      </div>
+      <button class="close-ribbon">
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
+    
+
+    <script>
+      document.querySelector('.close-ribbon').addEventListener('click', function() {
+        document.querySelector('.warning-ribbon').style.display = 'none';
+      });
+    </script>
+
+
+
+
+
+
+</body>
+</html>

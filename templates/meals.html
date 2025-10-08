@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meals | MyFoodRepo</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/common/general.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/common/tables.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/common/table-scroll.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/common/cards.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/pages/reminders.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+</head>
+<body>
+    {% with navbar_title="Meals" %}
+        {% include 'utils/navbar.html' %}
+    {% endwith %}
+
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <div class="flash-messages">
+                {% for category, message in messages %}
+                    <div class="flash flash-{{ category }}">{{ message }}</div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% endwith %}
+
+    <section class="page-section">
+        <div class="page-section-text">
+            <h2 class="main-title">Meals <span>monitoring dashboard</span></h2>
+            <div class="horizontal-progress-grid">
+                <div class="progress-item-horizontal">
+                    <h1>Orphan Meals</h1>
+                    <div class="status-indicator">
+                        <div class="status-dot {{ 'error' if orphan_meals else 'success' }}"></div>
+                        <span class="status-text">{{ "Issues Found" if orphan_meals else "All Clear" }}</span>
+                    </div>
+                    {% if orphan_meals %}
+                        <div class="alert">
+                            <div class="content-scrollable">
+                                <ul>
+                                    {% for meal_id in orphan_meals %}
+                                        <li>
+                                            <i class="fas fa-exclamation-circle"></i>
+                                            <div>
+                                                <strong>Meal ID: {{ meal_id }}</strong>
+                                            </div>
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        </div>
+                    {% else %}
+                        <div class="success-message">
+                            <span class="success-icon">✅</span>
+                            All meals are linked to a user.
+                        </div>
+                    {% endif %}
+                </div>
+
+                {% if meal_sanity_check_results %}
+                    {% for check_type, issues in meal_sanity_check_results.items() %}
+                        <div class="progress-item-horizontal">
+                            <h1>{{ check_type.replace('_', ' ').title() }}</h1>
+                            <div class="status-indicator">
+                                <div class="status-dot {{ 'error' if issues else 'success' }}"></div>
+                                <span class="status-text">{{ "Issues Found" if issues else "All Clear" }}</span>
+                            </div>
+                            {% if issues %}
+                                <div class="alert">
+                                    <div class="content-scrollable">
+                                        <ul>
+                                            {% for meal_id, user_id in issues.items() %}
+                                                <li>
+                                                    <i class="fas fa-exclamation-circle"></i>
+                                                    <div>
+                                                        <strong>Meal ID: {{ meal_id }}</strong> →
+                                                        <span class="reminder-list-items">User ID: {{ user_id }}</span>
+                                                    </div>
+                                                </li>
+                                            {% endfor %}
+                                        </ul>
+                                    </div>
+                                </div>
+                            {% else %}
+                                <div class="success-message">
+                                    <span class="success-icon">✅</span>
+                                    No {{ check_type.replace('_', ' ').lower() }} found.
+                                </div>
+                            {% endif %}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            </div>
+        </div>             
+    </section>
+
+    <section class="quick-actions-section">
+        <h2 class="main-title">Quick <span>Actions</span></h2>        
+        <div class="actions-container">
+            <div class="action-item">
+                <form action="{{ url_for('meals.sync_meals_data') }}" method="get">
+                    <input type="hidden" name="full_sync" value="false">
+                    <button type="submit" class="action-btn">
+                        <i class="fas fa-sync"></i>
+                    </button>
+                </form>
+                <div class="action-description">
+                    <h3>Sync Recent Meals (<3 days old) </h3>
+                    <p>Pull the latest meal data from user submissions into the system.</p>
+                </div>
+            </div>
+
+            <div class="action-item">
+                <form action="{{ url_for('meals.sync_meals_data') }}" method="get">
+                    <input type="hidden" name="full_sync" value="true">
+                    <button type="submit" class="action-btn">
+                        <i class="fas fa-history"></i>
+                    </button>
+                </form>
+                <div class="action-description">
+                    <h3>Full Sync</h3>
+                    <p>Force a full re-sync of all meal data from all submissions in the cohort.</p>
+                </div>
+            </div>
+
+            <div class="action-item">
+                <form action="{{ url_for('meals.manage_meals') }}" method="get">
+                    <button type="submit" class="action-btn">
+                        <i class="fas fa-hand-pointer"></i>
+                    </button>
+                </form>
+                <div class="action-description">
+                    <h3>Manage meals</h3>
+                    <p>Add, remove & overview meals present in the DB.</p>
+                </div>
+            </div>
+
+
+            <div class="action-item">
+                <form action="{{ url_for('meals.download_meals_csv') }}" method="get">
+                    <button class="action-btn">
+                        <i class="fas fa-database"></i>
+                    </button>
+                </form>
+                <div class="action-description">
+                    <h3> Backup Meals</h3>
+                    <p>Create a secure backup of all meal-related information.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <details class="page-section">
+        <summary class="main-title collapsible-summary">Meals <span>Metrics</span> </summary>
+    
+        <section class="page-section">
+            <div class="page-section-container">
+                <!-- Left Column: Group Info -->
+                <div class="left-column">
+                    <h2 class="sub-title">Study Group <span>Overview</span></h2>
+                    <div class="reminders-grid">
+                        <div class="reminder-card" data-group="0">
+                            <div class="card-header">
+                                <div class="card-icons" data-group="0">
+                                    <i class="fas fa-bell-slash"></i>
+                                    <i class="fas fa-comment-slash"></i>
+                                </div>
+                                <h3>Group 0</h3>
+                            </div>
+                            <div class="card-number">{{ meals_per_study_group[0] | default(0) }}</div>
+                            <div class="card-description">No reminders, No messages</div>
+                        </div>
+                    
+                        <div class="reminder-card" data-group="1" >
+                            <div class="card-header">
+                                <div class="card-icons" data-group="1">
+                                    <i class="fas fa-bell"></i>
+                                    <i class="fas fa-comment-slash"></i>
+                                </div>
+                                <h3>Group 1</h3>
+                            </div>
+                            <div class="card-number">{{ meals_per_study_group[1] | default(0) }}</div>
+                            <div class="card-description">Reminders only</div>
+                        </div>
+                    
+                        <div class="reminder-card" data-group="2">
+                            <div class="card-header">
+                                <div class="card-icons" data-group="2">
+                                    <i class="fas fa-bell-slash"></i>
+                                    <i class="fas fa-comment-dots"></i>
+                                </div>
+                                <h3>Group 2</h3>
+                            </div>
+                            <div class="card-number">{{ meals_per_study_group[2] | default(0) }}</div>
+                            <div class="card-description">Messages only</div>
+                        </div>
+                    
+                        <div class="reminder-card" data-group="3">
+                            <div class="card-header">
+                                <div class="card-icons" data-group="3">
+                                    <i class="fas fa-bell"></i>
+                                    <i class="fas fa-comment-dots"></i>
+                                </div>
+                                <h3>Group 3</h3>
+                            </div>
+                            <div class="card-number">{{ meals_per_study_group[3] | default(0) }}</div>
+                            <div class="card-description">Reminders & Messages</div>
+                        </div>
+                    </div>
+                </div>
+
+                    <div class="right-column">
+                        <h2 class="sub-title">Detailed <span>Evolution</span></h2>
+                        <div class="chart-container">
+                            <canvas id="mealsPerDayChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    
+        <section class="page-section">
+            <h2 class="sub-title">Meal related <span> retention charts</span></h2>
+            <div class="charts-grid">
+                <div class="chart-container">
+                    <canvas id="cohortRetentionChart"></canvas>
+                </div>
+                <div class="chart-container">
+                    <canvas id="loggingFrequencyChart"></canvas>
+                </div>
+                <div class="chart-container">
+                    <canvas id="mealRetentionChart"></canvas>
+                </div>
+            </div>
+        </section>
+    
+    </details>
+    
+    <details id="data-toggle" class="page-section">
+        <summary class="main-title collapsible-summary">Recent <span>Meal Logs</span></summary>
+        <div id="pagination-controls"></div>
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Meal Description</th>
+                            <th>Corresponding User</th>
+                            <th>Nutritional Information</th>
+                            <th>Date</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for meal in meals %}
+                        <tr>
+                            <td data-label="Meal Description">{{ meal.description }}</td>
+                            <td data-label="User">{{ meal.user_id }}</td>
+                            <td data-label="Nutrition">{{ meal.nutrients }}</td>
+                            <td data-label="Date">{{ meal.datetime }}</td>
+                            <td>
+                                <a href="{{ url_for('meals.edit_meal', meal_id=meal.id) }}">
+                                    <button class="control-button edit">Details</button>
+                                </a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+    </details>
+        <script src="{{ url_for('static', filename='js/general/tables.js') }}"></script>
+        <script src="{{ url_for('static', filename='js/general/general.js') }}"></script>
+        <script src="{{ url_for('static', filename='js/meals/chartRetention.js') }}"></script>
+        <script src="{{ url_for('static', filename='js/meals/chartFrequency.js') }}"></script>
+        <script src="{{ url_for('static', filename='js/meals/chartAvgMeals.js') }}"></script>
+        <script src="{{ url_for('static', filename='js/meals/chartMealsPerDay.js') }}"></script>
+</body>
+</html>

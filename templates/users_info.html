@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Users | MyFoodRepo</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/common/general.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/common/tables.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/common/cards.css') }}">
+   
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+</head>
+<body>
+
+    
+    <header class="header">
+        <div class="header-content">
+            <img src="{{ url_for('static', filename='images/mfr_logo.png') }}" alt="MyFoodRepo Logo" class="header-image">
+            <p class="header-text">Users</p>
+        </div>
+    </header>
+
+    <section class="dashboard-section">
+        <h2 class="main-title">Users <span>monitoring</span></h2>
+        
+        <div class="dashboard-container">
+            <!-- Integrated Monitoring Board -->
+            <div class="dashboard-panel compact">
+                <div class="panel-header">
+                    <h3><i class="fas fa-exclamation-circle"></i> Monitoring board</h3>
+                </div>
+                <div class="panel-content">
+                    <div class="wrapper">
+                        <div class="status-timings">
+                            <div class="status-card">
+                                <h1>Missing personal information</h1>
+                                {% if missing_reminders_dic %}
+                                    <div class="alert">
+                                        <p><strong>Some users have missing reminders:</strong></p>
+                                        <div class="missing-reminders-list">
+                                            <ul>
+                                                {% for user_id, reminders in missing_reminders_dic.items() %}
+                                                    <li>
+                                                        <i class="fas fa-user-slash"></i> <strong>User {{ user_id }}</strong>: 
+                                                        <span class="reminder-list-items">{{ reminders | join(", ") }}</span>
+                                                    </li>
+                                                {% endfor %}
+                                            </ul>
+                                        </div>
+                                    </div>
+                                {% else %}
+                                    <div class="success-message">
+                                        <span class="success-icon">✅</span>
+                                        All users have valid personal information
+                                    </div>
+                                {% endif %}
+                            </div>
+                            <div class="status-card">
+                                <h1>Users without activity</h1>
+                                {% if missing_reminders_dic %}
+                                    <div class="alert">
+                                        <p><strong>Some users have missing reminders:</strong></p>
+                                        <div class="missing-reminders-list">
+                                            <ul>
+                                                {% for user_id, reminders in missing_reminders_dic.items() %}
+                                                    <li>
+                                                        <i class="fas fa-user-slash"></i> <strong>User {{ user_id }}</strong>: 
+                                                        <span class="reminder-list-items">{{ reminders | join(", ") }}</span>
+                                                    </li>
+                                                {% endfor %}
+                                            </ul>
+                                        </div>
+                                    </div>
+                                {% else %}
+                                    <div class="success-message">
+                                        <span class="success-icon">✅</span>
+                                        All users have logged at least 1 meal.
+                                    </div>
+                                {% endif %}
+                            </div>
+                            <div class="status-card">
+                                <h1>Users out of the study</h1>
+                                {% if missing_reminders_dic %}
+                                    <div class="alert">
+                                        <p><strong>Some users have missing reminders:</strong></p>
+                                        <div class="missing-reminders-list">
+                                            <ul>
+                                                {% for user_id, reminders in missing_reminders_dic.items() %}
+                                                    <li>
+                                                        <i class="fas fa-user-slash"></i> <strong>User {{ user_id }}</strong>: 
+                                                        <span class="reminder-list-items">{{ reminders | join(", ") }}</span>
+                                                    </li>
+                                                {% endfor %}
+                                            </ul>
+                                        </div>
+                                    </div>
+                                {% else %}
+                                    <div class="success-message">
+                                        <span class="success-icon">✅</span>
+                                        No users have withdrawn from the study yet.
+                                    </div>
+                                {% endif %}
+                            </div>
+                            <div class="status-card">
+                                <h1>Inactive users</h1>
+                                {% if missing_reminders_dic %}
+                                    <div class="alert">
+                                        <p><strong>Some users have missing reminders:</strong></p>
+                                        <div class="missing-reminders-list">
+                                            <ul>
+                                                {% for user_id, reminders in missing_reminders_dic.items() %}
+                                                    <li>
+                                                        <i class="fas fa-user-slash"></i> <strong>User {{ user_id }}</strong>: 
+                                                        <span class="reminder-list-items">{{ reminders | join(", ") }}</span>
+                                                    </li>
+                                                {% endfor %}
+                                            </ul>
+                                        </div>
+                                    </div>
+                                {% else %}
+                                    <div class="success-message">
+                                        <span class="success-icon">✅</span>
+                                        No inactive users.
+                                    </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                        <div class="empty-space"></div>
+                    </div>
+                </div>
+            </div>
+    </section>
+
+    <section class="quick-actions-section">
+        <h2 class="main-title">Quick <span>Actions</span></h2>
+        
+        <div class="actions-container">
+            <div class="action-item">
+                <button class="action-btn">
+                    <i class="fas fa-user-minus"></i>
+                </button>
+                <div class="action-description">
+                    <h3>Withdraw a user</h3>
+                    <p>Manually withdraw a user from the study (e.g upon request, other reasons).</p>
+                </div>
+            </div>
+            
+            <div class="action-item">
+                <button class="action-btn">
+                    <i class="fas fa-user-plus"></i>
+                </button>
+                <div class="action-description">
+                    <h3>Adding a user</h3>
+                    <p>Adding a specific user to the study (e.g later user addition, wrongful suppression, etc.)</p>
+                </div>
+            </div>
+
+            <div class="action-item">
+                <button class="action-btn">
+                    <i class="fas fa-database"></i>
+                </button>
+                <div class="action-description">
+                    <h3>Backup cohort information</h3>
+                    <p>Create a secure backup of all users information</p>
+                </div>
+            </div>
+            
+        </div>
+    </section>
+    
+
+    <details class="page-section">
+        <summary class="main-title collapsible-summary">Users <span>Metrics</span> </summary>
+            <section class="page-section">
+                <div class="page-section-container">
+                    <!-- Left Column: Group Info -->
+                    <div class="left-column">
+                        <h2 class="sub-title">WIP : Cohort groups <span>overview</span></h2>
+                        <div class="progress-grid">
+                            <div class="group-info top-left">
+                                <p><i class="fas fa-bell-slash"></i> <i class="fas fa-comment-slash"></i> <strong>Group 0:</strong> <span class="number">{{users_per_group[0] | length}}</span></p>
+                            </div>
+                            <div class="group-info bottom-left">
+                                <p><i class="fas fa-bell"></i> <i class="fas fa-bell-regular"></i> <i class="fas fa-comment-slash"></i> <strong>Group 1:</strong> <span class="number">{{ users_per_group[1] | length }}</span></p>
+                            </div>
+                            <div class="group-info top-right">
+                                <p><i class="fas fa-bell-slash"></i> <i class="fas fa-comment-dots"></i> <strong>Group 2:</strong> <span class="number">{{ users_per_group[2] | length }}</span></p>
+                            </div>
+                            <div class="group-info bottom-right">
+                                <p><i class="fas fa-bell"></i> <i class="fas fa-user-cog"></i> <i class="fas fa-comment-dots"></i> <strong>Group 3:</strong> <span class="number">{{ users_per_group[3] | length }}</span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        <section class = "page-section">
+            <h2 class= "sub-title"> Cohort <span>overview</span> </h2>
+            <div class="charts-grid">
+                <div class="chart-container">
+                    <canvas id="genderChart"></canvas>
+                </div>
+                <div class="chart-container">
+                    <canvas id="ageChart"></canvas>
+                </div>
+                <div class="chart-container">
+                    <canvas id="languageChart"></canvas>
+                </div>
+            </div>
+        </section>
+    </details>
+
+    <details id="meals-data-toggle" class="page-section">
+        <summary class = "main-title collapsible-summary"> All users <span>data</span></h2></summary>
+            <div id="pagination-controls"></div>
+        <section class = "table">
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Gender</th>
+                        <th>Age</th>
+                        <th>Language</th>
+                        <th>Diet Preference</th>
+                        <th>Diet Goal</th>
+                        <th>Study Group</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for user in users.items %}
+                    <tr>
+                        <td>{{ user.id }}</td>
+                        <td>{{ user.gender }}</td>
+                        <td>{{ user.age }}</td>
+                        <td>{{ user.language }}</td>
+                        <td>{{ user.diet_preference }}</td>
+                        <td>{{ user.diet_goal }}</td>
+                        <td>{{ user.study_group }}</td>
+                        <td><button class="edit-btn">Details</button></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </section>
+    </details>
+    
+    
+
+    <script>
+        async function fetchData(url) {
+            const response = await fetch(url);
+            return response.json();
+        }
+
+        async function renderCharts() {
+            // Fetch data
+            const genderData = await fetchData('{{ url_for("users.users_genders") }}');
+            const ageData = await fetchData('{{ url_for("users.users_ages") }}');
+            const languageData = await fetchData('{{ url_for("users.users_languages") }}');
+
+            // Gender Chart
+            new Chart(document.getElementById('genderChart'), {
+                type: 'doughnut',
+                data: {
+                    labels: Object.keys(genderData),
+                    datasets: [{
+                        data: Object.values(genderData),
+                        backgroundColor: ['#cf6400', '#f7c048', '#ffce56']
+                    }]
+                }
+            });
+
+            // Age Chart
+            new Chart(document.getElementById('ageChart'), {
+                type: 'bar',
+                data: {
+                    labels: Object.keys(ageData),
+                    datasets: [{
+                        label: 'Age Distribution',
+                        data: Object.values(ageData),
+                        backgroundColor: '#de7012'
+                    }]
+                }
+            });
+
+            // Language Chart
+            new Chart(document.getElementById('languageChart'), {
+                type: 'doughnut',
+                data: {
+                    labels: Object.keys(languageData),
+                    datasets: [{
+                        data: Object.values(languageData),
+                        backgroundColor: ['#4caf50', '#ff9800', '#2196f3', '#9c27b0']
+                    }]
+                }
+            });
+        }
+
+        // Render charts when the page loads
+        renderCharts();
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,75 @@
+/* ================= Study Control Panel ================= */
+.study-control-panel {
+    margin-bottom: 30px;
+}
+
+.study-status-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.study-status-box {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-radius: 6px;
+    border: 1px solid #e6e9ed;
+    width: 100%;
+    max-width: 500px;
+}
+
+.status-details {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.status-details p {
+    margin: 0;
+    font-size: 0.9rem;
+    color: #5d6778;
+}
+
+.study-controls {
+    display: flex;
+    gap: 15px;
+    margin-right: 100px;
+    flex-wrap: wrap;
+}
+
+.control-button {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 20px;
+    border-radius: 6px;
+    background-color: #de7012;
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.control-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.control-button.start {
+    background-color: #27ae60;
+}
+.control-button.edit {
+    background-color: #e0c943;
+}
+
+.control-button.stop {
+    background-color: #e74c3c;
+}
+
+.control-button i {
+    font-size: 1rem;
+}

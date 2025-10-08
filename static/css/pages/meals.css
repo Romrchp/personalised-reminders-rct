@@ -1,0 +1,154 @@
+.meal-details {
+    margin: 40px auto;
+    padding: 20px;
+    border-radius: 15px;
+    background-color: #fff;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    font-family: 'Poppins', sans-serif;
+}
+
+.meal-title {
+    text-align: center;
+    font-size: 26px;
+    font-weight: 600;
+    margin-bottom: 25px;
+    color: #de7012;
+}
+
+.nutrition-title {
+    margin-top: 40px;
+    margin-bottom: 25px;
+    margin-left: 175px;
+    font-size: 20px;
+    color: #333;
+}
+
+.meal-details h2 {
+    margin-bottom: 10px;
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.meal-info {
+    margin-bottom: 20px;
+    margin-left: 175px;
+}
+
+.nutrients-table {
+    width: 75%;
+    border-collapse: collapse;
+}
+
+.nutrients-table td i[title] {
+    cursor: help;
+}
+
+.nutrients-table th,
+.nutrients-table td {
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+    text-align: left;
+}
+
+.nutrient-section {
+    background-color: #fff7f0;
+    font-weight: bold;
+    color: #333;
+}
+
+.nutrients-table th {
+    background-color: #f5f3f1;
+    color: #333;
+}
+
+.nutrients-table td span.missing {
+    color: #c0392b;
+    font-style: italic;
+}
+
+.missing {
+    color: #c0392b;
+    font-style: italic;
+}
+
+.highlight {
+    background-color: #fff7f7;
+}
+
+.monitor-btn {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    margin: 5px;
+    font-size: 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.monitor-btn.small {
+    padding: 6px 10px;
+    font-size: 0.8rem;
+    min-width: auto;
+    flex: 0 1 auto;
+}
+
+.monitor-btn i {
+    margin-right: 8px;
+}
+
+.monitor-btn:hover {
+    background-color: #45a049;
+}
+
+.monitor-btn.warning {
+    background-color: #e74c3c;
+}
+
+.monitor-btn.warning:hover {
+    background-color: #c0392b;
+}
+
+.dashboard-panel.full-width {
+    width: 100%;
+
+}
+
+.collapsible-summary {
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 1.8rem;
+    margin: 30px 0 15px;
+    color: #333;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.collapsible-summary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+}
+
+.collapsible-summary::after {
+    content: '\f107';
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 900;
+    position: absolute;
+    right: 20px;
+    transition: transform 0.3s ease;
+}
+
+details[open] .collapsible-summary::after {
+    transform: rotate(180deg);
+}
+
+.collapsible-summary span {
+    color: #de7012;
+}
+

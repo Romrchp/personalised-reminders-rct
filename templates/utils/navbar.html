@@ -1,0 +1,243 @@
+
+<script src="{{ url_for('static', filename='js/general/navbar-reload.js') }}" defer></script>
+<nav class="navbar">
+        <div class="navbar-brand">
+            <img src="{{ url_for('static', filename='images/mfr_logo.png') }}" alt="MyFoodRepo Logo" class="navbar-brand-logo">
+            <span class="navbar-brand-text">{{ navbar_title or "RCT Dashboard" }}</span>
+        </div>
+
+        <div class="navbar-toggle" id="mobileMenuToggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+
+        <div class="navbar-menu" id="navbarMenu">
+            <a href="{{ url_for('main.home') }}" class="navbar-menu-item">
+                <i class="fas fa-home"></i>
+                Home
+            </a>
+            <a href="{{ url_for('reminders.landing') }}" class="navbar-menu-item">
+                <i class="fa fa-bell"></i>
+                Reminders
+            </a>
+            <a href="{{ url_for('meals.home') }}" class="navbar-menu-item">
+                <i class="fa fa-utensils"></i>
+                Meals
+            </a>
+            <a href="{{ url_for('messages.messages_home') }}" class="navbar-menu-item">
+                <i class="fas fa-comments"></i>
+                Messages
+            </a>
+            <a href="{{ url_for('users.users') }}" class="navbar-menu-item">
+                <i class="fa fa-users"></i>
+                Participants
+            </a>
+        </div>
+</nav>
+
+<style>
+
+/* ================= Navbar Styling ================= */
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+    padding: 15px 30px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+}
+
+.navbar-brand {
+    display: flex;
+    align-items: center;
+}
+
+.navbar-brand img {
+    width: 180px;
+    height: auto;
+    margin-right: 20px;
+}
+
+.navbar-brand-text {
+    font-size: 1.6rem;
+    margin-top: 10px;
+    font-weight: 500;
+    color: #2c3e50;
+}
+
+.navbar-menu {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.navbar-menu-item {
+    text-decoration: none;
+    color: #34495e;
+    font-weight: 500;
+    transition: color 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.navbar-menu-item:hover {
+    color: #de7012;
+}
+
+.navbar-menu-item i {
+    font-size: 1.1rem;
+}
+
+.navbar-actions {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.navbar-search {
+   display: flex;
+   align-items: center;
+   background-color: #f8f9fa;
+   border-radius: 20px;
+   padding: 8px 15px;
+}
+
+.navbar-search input {
+    border: none;
+    background: transparent;
+    outline: none;
+    width: 200px;
+    font-size: 0.9rem;
+    color: #34495e;
+}
+
+.navbar-search i {
+    color: #5d6778;
+    margin-right: 10px;
+}
+
+.navbar-user {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+}
+
+.navbar-user-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.navbar-user-name {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #34495e;
+}
+
+.navbar-toggle {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.navbar-toggle span {
+    height: 3px;
+    width: 25px;
+    background-color: #34495e;
+    margin-bottom: 4px;
+    transition: all 0.3s ease;
+}
+
+
+@media (max-width: 2000px) {
+    .navbar-menu {
+        position: fixed;
+        top: 0;
+        left: -100%;
+        width: 250px;
+        height: 100%;
+        background-color: #fff;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 80px 30px;
+        transition: left 0.3s ease;
+        box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+    }
+
+    .navbar-menu.active {
+        left: 0;
+    }
+
+    .navbar-toggle {
+        display: flex;
+        z-index: 1001;
+    }
+
+    .navbar-toggle.active span:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 5px);
+    }
+
+    .navbar-toggle.active span:nth-child(2) {
+        opacity: 0;
+    }
+
+    .navbar-toggle.active span:nth-child(3) {
+        transform: rotate(-45deg) translate(5px, -5px);
+    }
+
+    .navbar-menu-item {
+        width: 100%;
+        padding: 10px 0;
+        border-bottom: 1px solid #f0f0f0;
+    }
+
+    .navbar-actions {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background-color: #fff;
+        padding: 15px 30px;
+        justify-content: space-between;
+        box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
+    }
+
+    .navbar-search input {
+        width: 100px;
+    }
+}
+
+@media (max-width: 576px) {
+    .navbar {
+        padding: 10px 15px;
+    }
+
+    .navbar-brand img {
+        width: 120px;
+        margin-right: 10px;
+    }
+
+    .navbar-brand-text {
+        font-size: 1.2rem;
+    }
+
+    .navbar-search {
+        display: none; /* Hide search on very small screens */
+    }
+
+    .navbar-actions {
+        gap: 10px;
+    }
+}
+
+</style>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Reminders | MyFoodRepo</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/common/general.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/common/tables.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/common/table-scroll.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/common/cards.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/pages/reminders.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <script src="{{ url_for('static', filename='js/general/general.js') }}"></script>
+</head>
+<body>
+
+    {% with navbar_title="Reminders Management" %}
+        {% include 'utils/navbar.html' %}
+    {% endwith %}
+
+    <section class="page-section">
+        <h2 class="main-title">Current <span>Reminders</span></h2>
+
+        {% if all_reminders %}
+        <div id="pagination-controls"></div>
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>User</th>
+                    <th>Type</th>
+                    <th>Time</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for reminder in all_reminders %}
+                <tr>
+                    <td>{{ reminder.id }}</td>
+                    <td>{{ reminder.user_id }}</td>
+                    <td>{{ reminder.meal_type }}</td>
+                    <td>{{ reminder.time }}</td>
+                    <td>
+                        <form action="{{ url_for('reminders.remove_user_reminder', reminder_id=reminder.id) }}" method="post" style="display:inline;">
+                            <button type="submit" class="control-button stop" style="padding: 5px 10px; font-size: 0.8rem;">
+                                <i class="fas fa-trash"></i> Remove
+                            </button>
+                        </form>
+
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <p>No reminders currently available.</p>
+        {% endif %}
+    </section>
+
+    <section class="page-section">
+        <h2 class="main-title">Add <span>Reminder</span></h2>
+        <form action="{{ url_for('reminders.add_user_reminder') }}" method="post">
+            <div style="display: flex; flex-direction: column; gap: 10px; max-width: 400px;">
+                <label>User ID: <input type="text" name="user_id" required></label>
+                <label>Time: <input type="time" name="time" required></label>
+                <label>Meal Type:
+                    <select name="meal_type" required>
+                        <option value="Breakfast">Breakfast</option>
+                        <option value="Lunch">Lunch</option>
+                        <option value="Dinner">Dinner</option>
+                    </select>
+                </label>
+                <button type="submit" class="control-button">
+                    <i class="fas fa-plus-circle"></i> Add Reminder
+                </button>
+            </div>
+        </form>
+    </section>
+
+    <script src="{{ url_for('static', filename='js/general/tables.js') }}"></script>
+     <script src="{{ url_for('static', filename='js/general/general.js') }}"></script>
+
+</body>
+</html>

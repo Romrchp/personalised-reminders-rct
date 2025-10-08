@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Scheduled Reminders | MyFoodRepo</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/common/general.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/common/tables.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/common/table-scroll.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/common/cards.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/pages/reminders.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    {% with navbar_title="Reminders scheduling management" %}
+        {% include 'utils/navbar.html' %}
+    {% endwith %}
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <div class="flash-messages">
+                {% for category, message in messages %}
+                    <div class="flash flash-{{ category }}">{{ message }}</div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% endwith %}
+    <section class="page-section">
+        <h2 class="main-title">Scheduled <span>Reminder Jobs</span></h2>
+
+        {% if jobs %}
+        <div id="pagination-controls"></div>
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>Job ID</th>
+                    <th>Trigger</th>
+                    <th>Next Run Time</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for job in jobs %}
+                <tr>
+                    <td>{{ job.id }}</td>
+                    <td>{{ job.trigger }}</td>
+                    <td>{{ job.next_run_time }}</td>
+                    <td>
+                        <form action="{{ url_for('reminders.unschedule_reminder_job', job_id=job.id) }}" method="post" style="display:inline;">
+                            <button type="submit" class="control-button stop" style="padding: 5px 10px; font-size: 0.8rem;">
+                                <i class="fas fa-ban"></i> Unschedule
+                            </button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <p>No scheduled jobs found.</p>
+        {% endif %}
+    </section>
+
+    <section class="page-section">
+        <h2 class="main-title">Schedule <span>New Reminder</span></h2>
+        <form action="{{ url_for('reminders.schedule_reminder_job') }}" method="post">
+            <div style="display: flex; flex-direction: column; gap: 10px; max-width: 400px;">
+                <label>User ID: <input type="text" name="user_id" required></label>
+                <label>Reminder ID: <input type="text" name="reminder_id" required></label>
+                <label>Meal Type:
+                    <select name="meal_type" required>
+                        <option value="breakfast">Breakfast</option>
+                        <option value="lunch">Lunch</option>
+                        <option value="dinner">Dinner</option>
+                        <option value="snack">Snack</option>
+                    </select>
+                </label>
+                <button type="submit" class="control-button">
+                    <i class="fas fa-plus-circle"></i> Schedule Reminder
+                </button>
+            </div>
+        </form>
+    </section>
+
+    <script src="{{ url_for('static', filename='js/general/tables.js') }}"></script>
+     <script src="{{ url_for('static', filename='js/general/general.js') }}"></script>
+
+</body>
+</html>

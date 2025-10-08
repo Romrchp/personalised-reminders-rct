@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Users | MyFoodRepo</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/common/general.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/common/tables.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/common/cards.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/pages/reminders.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/pages/users.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/common/table-scroll.css') }}">
+   
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+</head>
+<body>
+
+    {% with navbar_title="Participants" %}
+        {% include 'utils/navbar.html' %}
+    {% endwith %}
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <div class="flash-messages">
+                {% for category, message in messages %}
+                    <div class="flash flash-{{ category }}">{{ message }}</div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% endwith %}
+
+    <section class="page-section">
+        <div class="page-section-text">
+            <h2 class="main-title">Participants <span>monitoring</span></h2>
+            <div class="horizontal-progress-grid">
+                {% if sanity_check_results %}
+                    {% for check_type, issues in sanity_check_results.items() %}
+                        <div class="progress-item-horizontal">
+                            <h1>{{ check_type.replace('_', ' ').title() }}</h1>
+                            <div class="status-indicator">
+                                <div class="status-dot {{ 'error' if issues else 'success' }}"></div>
+                                <span class="status-text">{{ "Issues Found" if issues else "All Clear" }}</span>
+                            </div>
+                            {% if issues %}
+                                <div class="alert">
+                                    <div class="content-scrollable">
+                                        <ul>
+                                            {% for id, phone_number in issues.items() %}
+                                                <li>
+                                                    <i class="fas fa-exclamation-circle"></i>
+                                                    <div>
+                                                        <strong>ID: {{ id }}</strong> →
+                                                        <span class="reminder-list-items">{{ phone_number }}</span>
+                                                    </div>
+                                                </li>
+                                            {% endfor %}
+                                        </ul>
+                                    </div>
+                                </div>
+                            {% else %}
+                                <div class="success-message">
+                                    <span class="success-icon">✅</span>
+                                    No {{ check_type.replace('_', ' ').lower() }} found.
+                                </div>
+                            {% endif %}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+                
+                <div class="progress-item-horizontal">
+                    <h1>Users out of the study</h1>
+                    <div class="status-indicator">
+                        <div class="status-dot {{ 'error' if withdrawn_users else 'success' }}"></div>
+                        <span class="status-text">{{ "Users Withdrawn" if withdrawn_users else "All Active" }}</span>
+                    </div>
+                    {% if withdrawn_users %}
+                        <div class="alert">
+                            <div class="content-scrollable">
+                                <ul>
+                                    {% for user_id, phone_number in withdrawn_users.items() %}
+                                        <li>
+                                            <i class="fas fa-user-slash"></i>
+                                            <div>
+                                                <strong>ID: {{ user_id }}</strong> →
+                                                <span class="reminder-list-items">{{ phone_number }}</span>
+                                            </div>
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        </div>
+                    {% else %}
+                        <div class="success-message">
+                            <span class="success-icon">✅</span>
+                            No users have withdrawn from the study yet.
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="quick-actions-section">
+        <h2 class="main-title">Quick <span>Actions</span></h2> 
+        <div class="actions-container">
+            <div class="action-item">
+                <form action="{{ url_for('users.manage_users') }}" method="get">
+                    <button type="submit" class="action-btn">
+                        <i class="fas fa-hand-pointer"></i>
+                    </button>
+                </form>
+                <div class="action-description">
+                    <h3>Manage participants</h3>
+                    <p>Consult and manage participants information.</p>
+                </div>
+            </div>
+    
+            <div class="action-item">
+                <form action="{{ url_for('users.download_users_csv') }}" method="get">
+                    <button class="action-btn">
+                        <i class="fas fa-database"></i>
+                    </button>
+                </form>
+                <div class="action-description">
+                    <h3>Backup cohort information</h3>
+                    <p>Create a secure backup of all participants information</p>
+                </div>
+            </div>
+
+            <div class="action-item">
+                <form action="{{ url_for('users.generate_health_summaries') }}" method="get">
+                    <button type="submit" class="action-btn">
+                        <i class="fas fa-heart"></i>
+                    </button>
+                </form>
+                <div class="action-description">
+                    <h3>Generate health summaries</h3>
+                    <p>Generate summaries for all participants.</p>
+                </div>
+            </div>
+            <div class="action-item">
+                <form action="{{ url_for('main.update_cohort') }}" method="get">
+                    <button type="submit" class="action-btn">
+                        <i class="fas fa-upload"></i>
+                    </button>
+                </form>
+                <div class="action-description">
+                    <h3>Update cohort participants</h3>
+                    <p>Add new participants to the cohort with an uploaded CSV file.</p>
+                </div>
+            </div>
+            
+        </div>
+    </section>
+    
+
+    <details class="page-section">
+        <summary class="main-title collapsible-summary">Participants <span>Metrics</span> </summary>
+            <section class="page-section">
+                <div class="page-section-container">
+                    <!-- Left Column: Group Info -->
+                    <div class="left-column">
+                        <h2 class="sub-title">Cohort <span>Participants</span></h2>
+                        <div class="reminders-grid">
+                            <div class="reminder-card" data-group="0">
+                                <div class="card-header">
+                                    <div class="card-icons" data-group="0">
+                                        <i class="fas fa-bell-slash"></i>
+                                        <i class="fas fa-comment-slash"></i>
+                                    </div>
+                                    <h3>Group 0</h3>
+                                </div>
+                                <div class="card-number">{{ users_per_group[0] | length }}</div>
+                                <div class="card-description">No reminders, no communication</div>
+                            </div>
+
+                            <div class="reminder-card" data-group="1">
+                                <div class="card-header">
+                                    <div class="card-icons" data-group="1">
+                                        <i class="fas fa-bell"></i>
+                                        <i class="fas fa-comment-slash"></i>
+                                    </div>
+                                    <h3>Group 1</h3>
+                                </div>
+                                <div class="card-number">{{ users_per_group[1] | length }}</div>
+                                <div class="card-description">Generic Reminders only</div>
+                            </div>
+
+                            <div class="reminder-card" data-group="2">
+                                <div class="card-header">
+                                    <div class="card-icons" data-group="2">
+                                        <i class="fas fa-bell-slash"></i>
+                                        <i class="fas fa-comment-dots"></i>
+                                    </div>
+                                    <h3>Group 2</h3>
+                                </div>
+                                <div class="card-number">{{ users_per_group[2] | length }}</div>
+                                <div class="card-description">Chatbot communication only</div>
+                            </div>
+
+                            <div class="reminder-card" data-group="3">
+                                <div class="card-header">
+                                    <div class="card-icons" data-group="3">
+                                        <i class="fas fa-bell"></i>
+                                        <i class="fas fa-comment-dots"></i>
+                                    </div>
+                                    <h3>Group 3</h3>
+                                </div>
+                                <div class="card-number">{{ users_per_group[3] | length }}</div>
+                                <div class="card-description">Personalized Reminders & Communication</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="right-column">
+                        <h2 class="sub-title">Participants having used the app <span>per study group</span></h2>
+                        <div class="chart-container">
+                            <canvas id="activeInactiveUsersChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="page-section">
+        <h2 class="main-title">Cohort <span>Overview</span></h2>
+        
+        <div class="cohort-selector">
+            <div class="dropdown-container">
+                <div class="dropdown-btn" id="groupSelector">
+                    <span id="selectedGroupText">All Study Groups</span>
+                    <i class="fas fa-chevron-down dropdown-arrow"></i>
+                </div>
+                <div class="dropdown-menu" id="dropdownMenu">
+                    <div class="dropdown-item selected" data-group="all">
+                        <i class="fas fa-users"></i>
+                        <span>All Study Groups</span>
+                    </div>
+                    <div class="dropdown-item" data-group="0">
+                        <div class="group-icons">
+                            <i class="fas fa-bell-slash"></i>
+                            <i class="fas fa-comment-slash"></i>
+                        </div>
+                        <span>Group 0 - Control</span>
+                    </div>
+                    <div class="dropdown-item" data-group="1">
+                        <div class="group-icons">
+                            <i class="fas fa-bell"></i>
+                            <i class="fas fa-comment-slash"></i>
+                        </div>
+                        <span>Group 1 - Reminders Only</span>
+                    </div>
+                    <div class="dropdown-item" data-group="2">
+                        <div class="group-icons">
+                            <i class="fas fa-bell-slash"></i>
+                            <i class="fas fa-comment-dots"></i>
+                        </div>
+                        <span>Group 2 - Messages Only</span>
+                    </div>
+                    <div class="dropdown-item" data-group="3">
+                        <div class="group-icons">
+                            <i class="fas fa-bell"></i>
+                            <i class="fas fa-comment-dots"></i>
+                        </div>
+                        <span>Group 3 - Both</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Selected Group Info (hidden for "All Groups") -->
+        <div class="selected-group-info" id="selectedGroupInfo" style="display: none;">
+            <div class="selected-group-title">
+                <div class="group-icons" id="selectedGroupIcons">
+                    <!-- Icons will be populated by JS -->
+                </div>
+                <h3 id="selectedGroupName">Group Name</h3>
+            </div>
+            <div class="selected-group-description" id="selectedGroupDesc">
+                Group description
+            </div>
+            <div class="selected-group-stats">
+                <div class="stat-item">
+                    <span class="stat-number" id="selectedGroupCount">0</span> participants
+                </div>
+                <!-- Add more stats as needed -->
+            </div>
+        </div>
+
+        <!-- Dynamic Charts Container -->
+        <div class="dynamic-charts-container" id="chartsContainer">
+            <div class="charts-grid">
+                <div class="chart-container">
+                    <canvas id="genderChart"></canvas>
+                </div>
+                <div class="chart-container">
+                    <canvas id="ageChart"></canvas>
+                </div>
+                <div class="chart-container">
+                    <canvas id="languageChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+    </details>
+
+    
+
+    <script src="{{ url_for('static', filename='js/general/tables.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/general/general.js') }}"></script>
+    <script> window.groupData = {{ group_data_json | safe }};</script>
+    <script src="{{ url_for('static', filename='js/users/dropdownCharts.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/users/activeInactiveUsersChart.js') }}"></script>
+ 
+
+</body>
+</html>

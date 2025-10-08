@@ -1,0 +1,128 @@
+/* Updated Content Card Styling */
+.content-card {
+    width: 300px; 
+    height: 150px; 
+    background-color: #fff;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    text-align: center;
+    cursor: pointer;
+    transition: transform 0.3s, box-shadow 0.3s, background-color 0.3s ease-in-out; /* Smooth transition */
+    position: relative;
+    overflow: hidden; 
+}
+
+/* Gradient on Hover for Squared Cards */
+.content-card:hover {
+    background: linear-gradient(135deg, #ffa33a, #de7012); 
+    transform: translateY(-5px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+}
+
+/* Change Title Color on Hover */
+.content-card:hover h3 {
+    color: #fff; /* Change title color to white when hovering */
+}
+
+/* Hover Arrow for Squared Cards */
+.content-card:hover::after {
+    content: '→'; /* Unicode arrow symbol */
+    font-size: 2rem;
+    color: #fff;
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    opacity: 1;
+    transition: opacity 0.3s ease-in-out;
+}
+
+/* Title Styling */
+.content-card h3 {
+    color: #de7012; /* Matching heading color */
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+/* Text within the content cards */
+.content-card p { 
+    color: #333;
+    font-size: 1.1rem;
+    font-weight: bold;
+    margin-left: 20px;
+}
+
+/* Icon Styling */
+.content-card i {
+    font-size: 2.5rem;
+    color: #333; /* Dark color for the icon */
+}
+
+.content-card a {
+    text-decoration: none;  
+    display: block;         
+}
+
+.smaller-card {
+    width: 200px; 
+    height: 100px; 
+}
+
+.info-card {
+    width: 150px; 
+    height: 100px; 
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    text-align: center;
+    cursor: pointer;
+    transition: none;
+    transform: none;
+}
+
+.info-card h3 {
+    color: #de7012; /* Matching heading color */
+    font-size: 1.05rem;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+
+.grid-container {
+    display: grid;
+    justify-content: center;
+    align-items: center; 
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 10px; /* Adjust the gap between sections */
+    width: 25%;
+    height: 50%; 
+}
+
+
+@media (max-width: 768px) {
+    .main-content {
+        padding: 20px;
+    }
+
+    .content-card {
+        width: 150px;
+        height: 150px;
+    }
+
+    .content-card h3 {
+        font-size: 1rem;
+    }
+
+    .content-card i {
+        font-size: 2.5rem;
+    }
+}

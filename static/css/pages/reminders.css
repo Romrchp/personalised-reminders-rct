@@ -1,0 +1,260 @@
+.missing-reminders-list {
+    max-height: 200px;
+    overflow-y: auto;
+    margin-top: 10px;
+    padding-right: 10px;
+}
+
+.missing-reminders-list li {
+    background: #ffe5e5;
+    border-left: 5px solid #de7012;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: 500;
+    text-align: left;
+}
+
+/* Nested Reminder List */
+.missing-reminders-list ul {
+    list-style: none;
+    padding: 0;
+    margin-top: 10px;
+}
+
+.missing-reminders-list ul li {
+    font-size: 1rem;
+    color: #555;
+}
+
+/* Bullet Points for Nested List */
+.missing-reminders-list ul li::before {
+    content: "•";
+    color: #de7012;
+    font-weight: bold;
+    display: inline-block;
+    width: 1em;
+    margin-left: -1em;
+}
+
+
+
+
+@media (max-width: 768px) {
+    .status-timings {
+        flex-direction: column;
+    }
+    .status-card, .timings-card {
+        width: 100%;
+    }
+}
+
+.reminder-time {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 0;
+    border-bottom: 1px solid #eaeaea;
+}
+
+.reminder-time:last-child {
+    border-bottom: none;
+}
+
+.reminder-label {
+    font-weight: 600;
+}
+
+.reminder-value {
+    color: var(--primary-color);
+    font-weight: 700;
+    background-color: rgba(74, 111, 165, 0.1);
+    padding: 4px 12px;
+    border-radius: 20px;
+}
+
+.reminder-icon {
+    font-size: 1.5rem;
+    color: var(--primary-color);
+}
+
+.reminder-list-items {
+    color: #555;
+    font-size: 1rem;
+}
+
+/* ================= Reminders Grid Styling ================= */
+.reminders-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    max-height: 350px;
+    gap: 15px;
+    width: 100%;
+}
+
+.reminder-card {
+    background: #fff;
+    border: 1px solid #e6e9ed;
+    border-radius: 8px;
+    max-height: 175px;
+    padding: 20px;
+    text-align: center;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    border-left: 4px solid #de7012;
+}
+
+.reminder-card[data-group="0"] {
+    border-left: 4px solid #6c757d;
+}
+
+.reminder-card[data-group="1"] {
+    border-left: 4px solid #17a2b8;
+}
+
+.reminder-card[data-group="2"] {
+    border-left: 4px solid #28a745;
+}
+
+.reminder-card[data-group="3"] {
+    border-left: 4px solid #7100b3;
+}
+
+
+.reminder-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.card-icons {
+    display: flex;
+    gap: 8px;
+}
+
+.card-icons i{
+    font-size: 1.1rem;
+}
+
+.card-icons[data-group="0"] i {
+    font-size: 1.1rem;
+    color: #6c757d;
+}
+
+.card-icons[data-group="1"] i {
+    font-size: 1.1rem;
+    color: #17a2b8;
+}
+
+.card-icons[data-group="2"] i {
+    font-size: 1.1rem;
+    color: #28a745;
+}
+
+.card-icons[data-group="3"] i {
+    font-size: 1.1rem;
+    color: #7100b3;
+}
+
+.card-header h3 {
+    font-size: 1rem;
+    color: #34495e;
+    font-weight: 500;
+    margin: 0;
+}
+
+.card-number {
+    font-size: 2.2rem;
+    font-weight: 600;
+    color: #34495e;
+    margin: 10px 0;
+}
+
+.card-description {
+    font-size: 0.85rem;
+    color: #5d6778;
+    font-style: italic;
+}
+
+/* ================= Reminder Hours Styling ================= */
+.reminder-hours-container {
+    display: flex;
+    flex-direction: column;
+    margin-top: 50px;
+    gap: 20px;
+    width: 100%;
+}
+
+.hour-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    background-color: #f8f9fa;
+    padding: 16px;
+    border-radius: 8px;
+    border-left: 4px solid #de7012;
+    transition: transform 0.2s ease;
+}
+
+.hour-item:hover {
+    transform: translateX(5px);
+    background-color: #f0f0f0;
+}
+
+.hour-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #de7012;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.hour-icon i {
+    font-size: 1.1rem;
+    color: white;
+}
+
+.hour-time {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #34495e;
+    min-width: 80px;
+}
+
+.hour-label {
+    font-size: 0.9rem;
+    color: #5d6778;
+    font-weight: 500;
+}
+
+/* ================= Responsive Updates ================= */
+@media (max-width: 768px) {
+    .reminders-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .reminder-hours-container {
+        gap: 15px;
+    }
+    
+    .hour-item {
+        padding: 12px;
+    }
+    
+    .hour-time {
+        font-size: 1rem;
+        min-width: 70px;
+    }
+}
+
+
+

@@ -1,0 +1,159 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body Styling */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #fff9f3; /* Soft background color */
+    color: #333;
+}
+
+/* Header Styling */
+.header {
+    display: flex;
+    justify-content: center; /* Center the text in the header */
+    align-items: center;     /* Center content vertically */
+    padding: 20px;
+    background-color: #de7012; 
+    text-align: center;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Header Content Layout */
+.header-content {
+    display: flex;
+    align-items: center; /* Center image and text vertically */
+    width: 100%;
+    justify-content: center; /* Center the text horizontally */
+}
+
+/* Image Styling */
+.header-image {
+    width: 150px;          /* Adjust image size */
+    height: auto;          /* Maintain aspect ratio */
+    margin-right: 20px;    /* Space between image and text */
+}
+
+/* Text Styling */
+.header-text {
+    font-size: 2.2rem;        /* Increase the font size */
+    color: #683b00;           /* Bright orange color for the text */
+    margin-top: 10px;         /* Space between image and text */
+    font-weight: bold;        /* Bold font */
+    letter-spacing: 2px;      /* Add spacing between letters */
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+    font-family: 'Helvetica', sans-serif;
+}
+
+/* Main Content Section */
+.main-content {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    padding: 40px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .main-content {
+        padding: 20px;
+    }
+
+    .content-card {
+        width: 150px;
+        height: 150px;
+    }
+
+    .content-card h3 {
+        font-size: 1rem;
+    }
+
+    .content-card i {
+        font-size: 2.5rem;
+    }
+}
+
+/* Icon animation (optional) */
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+
+.collapsible {
+    width: auto; /* Adjust width */
+    display: inline-block; /* Fit content */
+    padding: 12px 20px; /* Adjust padding */
+    border-radius: 10px; /* Rounded edges */
+    margin: 20px auto; /* Center it */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.collapsible:hover {
+    background: linear-gradient(135deg, #ffa33a, #de7012);
+}
+
+.content {
+    display: none;
+    overflow: hidden;
+    padding: 15px;
+    border: 1px solid #ddd;
+}
+
+.content.show {
+    display: block;
+}
+
+.icon {
+    transition: transform 0.3s ease;
+}
+
+.icon.rotate {
+    transform: rotate(180deg);
+}
+
+.user-actions {
+    display: flex;
+    justify-content: flex-start; /* Align to the left */
+    padding: 20px;
+    margin-left: 50px; /* Adjust left margin */
+}
+
+.button-container {
+    display: flex;
+    flex-direction: column; /* Stack buttons vertically */
+    gap: 20px;
+}
+
+.action-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    padding: 20px 30px; /* Increase padding for larger buttons */
+    font-size: 1.4rem; /* Slightly larger text */
+    font-weight: bold;
+    text-decoration: none;
+    border-radius: 15px;
+    transition: all 0.3s ease-in-out;
+    color: white;
+    width: 400%; 
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+.action-button i {
+    font-size: 1.6rem; /* Slightly larger icons */
+}
+
+
+.collapsible-container {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+}

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meals | MyFoodRepo</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/common/general.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/common/tables.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/common/cards.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/pages/meals.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+</head>
+<body>
+
+    {% set navbar_title = "Meal n°" ~ meal.id %}
+    {% include 'utils/navbar.html' %}
+
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <div class="flash-messages">
+                {% for category, message in messages %}
+                    <div class="flash flash-{{ category }}">{{ message }}</div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% endwith %}
+    
+    <main class="meal-details">
+        <h2 class="meal-title">
+            <i class="fas fa-utensils"></i> 
+            Meal: {{ meal.description }}
+        </h2>
+
+        <div class="meal-info">
+            <p>
+                <strong><i class="fas fa-user"></i> User:</strong> 
+                {{ meal.user_id }}
+            </p>
+            <p>
+                <strong><i class="fas fa-calendar-alt"></i> Date:</strong> 
+                {{ meal.datetime.strftime('%Y-%m-%d %H:%M') if meal.datetime else 'Not specified' }}
+            </p>
+        </div>
+
+        <h3 class="nutrition-title"><i class="fas fa-apple-alt"></i> Nutritional Information</h3>
+        <table class="nutrients-table">
+            <thead>
+                <tr>
+                    <th>Nutrient</th>
+                    <th>Values</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% set energy = ['energy_kcal'] %}
+                {% set macros = ['carbohydrates', 'protein', 'fat', 'fatty_acids_saturated', 'fatty_acids_polyunsaturated','fatty_acids_monounsaturated', 'fiber', 'starch', 'sugar', 'salt', 'alcohol'] %}
+                {% set micros = ['sodium', 'iron', 'zinc', 'phosphorus', 'calcium', 'cholesterol'] %}
+                {% set water = ['water'] %}
+            
+                {% for section, label, icon in [
+                    (energy, 'Energy', 'fa-fire-alt'),
+                    (macros, 'Macronutrients', 'fa-drumstick-bite'),
+                    (micros, 'Micronutrients', 'fa-weight-hanging'),
+                    (water, 'Water', 'fa-tint')
+                ] %}
+                    <tr class="nutrient-section">
+                        <td colspan="2">
+                            <i class="fas {{ icon }}" style="color:#de7012; margin-right: 8px;"></i>
+                            <strong>{{ label }}</strong>
+                        </td>
+                    </tr>
+            
+                    {% for key in section %}
+                        {% set value = meal.nutrients[key] %}
+                        {% set unit = 'g' %}
+                        {% if key == 'water' %}
+                            {% set unit = 'mL' %}
+                        {% elif key == 'energy_kcal' %}
+                            {% set unit = 'kcal' %}
+                        {% elif key in ['sodium', 'iron', 'zinc', 'phosphorus', 'calcium', 'cholesterol'] %}
+                            {% set unit = 'mg' %}
+                        {% endif %}
+            
+                        <tr class="{{ 'highlight' if value is none }}">
+                            <td>
+                                {{ key.replace('_', ' ').capitalize() }}
+                            </td>
+                            <td>
+                                {{ value if value is not none else 'Not specified' }} {{ unit }}
+                            </td>
+                        </tr>
+                    {% endfor %}
+                {% endfor %}
+            </tbody>
+        </table>
+    </main>
+    
+    
+    <script src="{{ url_for('static', filename='js/general/general.js') }}"></script>
+    </body>
+
+
+</html>

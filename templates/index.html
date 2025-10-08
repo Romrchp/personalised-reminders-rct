@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyFoodRepo - RCT Admin Dashboard</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/common/general.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/pages/index.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <!-- Link to external JavaScript -->
+    <script src="{{ url_for('static', filename='js/general/general.js') }}" defer></script>
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+</head>
+<body>
+
+    {% with navbar_title="RCT Dashboard - Home Page" %}
+        {% include 'utils/navbar.html' %}
+    {% endwith %}
+    
+    <!-- Study Control Panel -->
+    <section class="page-section study-control-panel">
+    <div class="page-section-text">
+        <h2 class="main-title">RCT <span>Status</span></h2>
+        <div class="study-status-container">
+            <div class="study-status-box">
+                <div class="status-indicator">
+                    <div class="status-dot {{ 'active' if study_active else 'inactive' }}"></div>
+                    <span class="status-text">{{ "Active" if study_active else "Inactive" }}</span>
+                </div>
+                <div class="status-details">
+                    <p><strong>Start Date:</strong> {{ study_start_date or "Not started" }}</p>
+                    <p><strong>Duration:</strong> 
+                        {% if study_active %}
+                            <span id="live-timer" data-start-date="{{ study_start_date_raw }}">Calculating...</span>
+                        {% else %}
+                            N/A
+                        {% endif %}
+                    </p>
+                    <p><strong>Status:</strong> {{ study_status or "Not running" }}</p>
+                </div>
+            </div>
+
+            <!-- Study Controls -->
+            <div class="study-controls">
+                <!-- Manage Button -->
+                <a href="/WIP" class="control-button">
+                    <i class="fas fa-sliders-h"></i>
+                    <span>Manage Study</span>
+                </a>
+
+                <!-- Download Logs Button -->
+                <a href="/WIP"
+                   class="control-button download {{ 'disabled' if not study_active else '' }}"
+                   title="{{ 'Download study logs' if study_active else 'Logs unavailable until study is started' }}">
+                    <i class="fas fa-file-alt"></i>
+                    <span>Download Logs</span>
+                </a>
+
+                <!-- Download Database Button -->
+                <a href="/WIP"
+                   class="control-button download {{ 'disabled' if not study_active else '' }}"
+                   title="{{ 'Download database file' if study_active else 'Database unavailable until study is started' }}">
+                    <i class="fas fa-database"></i>
+                    <span>Download DB</span>
+                </a>
+            </div>
+        </div>
+    </div>
+    </section>
+
+
+
+    <!-- Study Statistics Section -->
+    <section class="page-section">
+        <div class="page-section-text">
+            <h2 class="main-title">Main <span>Numbers</span></h2>
+            <div class="horizontal-progress-grid">
+                <div class="progress-item-horizontal">
+                    <i class="fa fa-users"></i>
+                    <p>Participants</p>
+                    <div class="number">{{ users_count }}</div>
+                </div>
+                <div class="progress-item-horizontal">
+                    <i class="fa fa-utensils"></i>
+                    <p>Meals Recorded</p>
+                    <div class="number">{{ meals_count }}</div>
+                </div>
+                <div class="progress-item-horizontal">
+                    <i class="fa fa-bell"></i>
+                    <p>Daily Reminders Scheduled</p>
+                    <div class="number">{{ reminders_count }}</div>
+                </div>
+                <div class="progress-item-horizontal">
+                    <i class="fa fa-comments"></i>
+                    <p>Messages Exchanged</p>
+                    <div class="number">{{ messages_count }}</div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Research Monitoring Tools Section -->
+    <section class="quick-actions-section">
+        <h2 class="main-title">Monitoring <span>Tools</span></h2>
+        <div class="actions-container">
+            <div class="action-item">
+                <button class="action-btn">
+                    <a href="/reminders">
+                        <i class="fas fa-bell"></i>
+                    </a> 
+                </button>
+                <div class="action-description">
+                    <h3>Reminder Management</h3>
+                    <p>View and configure participant reminders schedule</p>
+                </div>
+            </div>
+            <div class="action-item">
+                <button class="action-btn">
+                    <a href="/meals">
+                        <i class="fas fa-utensils"></i>
+                    </a> 
+                </button>
+                <div class="action-description">
+                    <h3>Meal Data</h3>
+                    <p>Analyze and monitor participant meal entries</p>
+                </div>
+            </div>
+            <div class="action-item">
+                <button class="action-btn">
+                    <a href="/messages">
+                        <i class="fas fa-comments"></i>
+                    </a> 
+                </button>
+                <div class="action-description">
+                    <h3>Communication Logs</h3>
+                    <p>Review messages exchanged with participants</p>
+                </div>
+            </div>
+            <div class="action-item">
+                <button class="action-btn">
+                    <a href="/users">
+                        <i class="fas fa-users"></i>
+                    </a> 
+                </button>
+                <div class="action-description">
+                    <h3>Participant Management</h3>
+                    <p>View and manage research participants data</p>
+                </div>
+            </div>
+        </div> 
+    </section>
+
+
+</body>
+</html>
