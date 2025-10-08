@@ -1,0 +1,219 @@
+{
+    "welcome_id": "HX823b8d761675359267dafafacb082557",
+    "error": "Si è verificato un errore.",
+    "welcome_message": "Ciao!\nGrazie mille per il Suo interesse nella nostra ricerca sull'usabilità dell'app MyFoodRepo.",
+    "welcome_message_allowed_to_chat": "Buongiorno! Sono il bot di MyFoodRepo e La accompagnerò per tutta la durata dello studio!\n\nDesidero informarla che l'applicazione contiene un chatbot utilizzato esclusivamente per registrare i pasti, non risponde a domande su alimentazione o dieta.\nSe ha bisogno di informazioni o consigli riguardo all Sua alimentazione, può contattarmi in qualsiasi momento via SMS a questo numero (+41 79 807 45 35).È possibile inviare fino q 10 mesaggi al giorno.\nLa ringrazio molto per la Sua partecipazione al progetto!",
+    "download_app_message": "Qui sotto troverà i link per scaricare l'app in base al sistema operativo del Suo telefono.",
+    "welcome_key_message": "Una volta scaricata e avviata l'app, inserisca il seguente codice per attivarla:",
+    "welcome_final_note": "Se hai bisogno di assistenza durante lo studio o desideri interrompere la Sua partecipazione, La preghiamo di contattarci all'indirizzo marcel.salathe@epfl.ch. Può anche semplicemente ritirarti dallo studio inviando la parola 'studystop' a questo numero. Le auguriamo una buona giornata!",
+    "goodbye_message": "Buongiorno!\nDesideriamo informarla che lo studio di usabilità di MyFoodRepo sta per terminare! La sua chiave verrà disattivata e l’accesso all’applicazione le sarà revocato a breve.",
+    "goodbye_allowed_to_chat_message_started": "Buongiorno!\nDesideriamo informarla che lo studio di usabilità di MyFoodRepo sta per terminare! Spero che abbia trovato utile l’app per migliorare le sue abitudini e che io sia stato parte del suo percorso.\nLa sua chiave verrà disattivata e l’accesso all’applicazione le sarà revocato a breve.",
+    "never_started": "Purtroppo non possiamo fornirle un riepilogo nutrizionale per il periodo di 14 giorni, in quanto non è stato registrato alcun utilizzo dell’app durante tale periodo.",
+    "goodbye_message_email_info": "A breve riceverà, all’indirizzo e-mail che ci ha fornito, un questionario di feedback sulla sua esperienza con l’applicazione, insieme alle informazioni relative al suo riepilogo nutrizionale. La invitiamo a controllare anche la cartella spam nel caso non ricevesse nulla entro le prossime ore.",
+    "goodbye_final_note_message": "Non esiti a contattarci per qualsiasi domanda o chiarimento. La ringraziamo ancora!",
+
+
+
+    
+    
+    "reminder_static_messages": [
+        "Anche se registrare il Suo {0} può sembrare insignificante, è la chiave per grandi successi. Non dimenticare di farlo oggi!",
+        "Ehi! Il Suo {0} ti sta chiamando: pronto/a a rispondere?",
+        "Un piccolo promemoria: registrare il Suo {0} è mantenere il giusto ritmo. Ha trovato un momento per farlo oggi?",
+        "Il Suo {0} potrebbe sfuggirti! Non dimentichi e registralo appena possibile!",
+        "Non lasci che il Suo {0} svanisca — lo registri mentre è ancora fresco!",
+        "Non dimentichi di registrare il Suo {0} oggi. Ogni piatto conta!",
+        "Si ricordi di registrare il Suo {0} oggi, il Suo futuro La ringrazierà!",
+        "Registrare il Suo {0} è come piantare un seme verso i Suoi obiettivi. Lo annaffi ora?",
+        "Rimanga fedele ai Suoi impegni e annoti il Suo {0}. La regolarità fa la differenza.",
+        "Un piccolo promemoria gentile: ha già registrato il Suo {0}? Ogni piccolo gesto conta!",
+        "Grandi progressi iniziano spesso con piccoli passi. Registrare il Suo {0} è uno di questi.",
+        "Non lasci che il Suo {0} passi inosservato, lo registri al più presto!",
+        "Il Suo {0} è troppo importante per restare nell'ombra: lo registri e mantenga la rotta!",
+        "Pensi alla Sua soddisfazione domani se registri il Suo {0}! Un passo in più verso i Suoi obiettivi :)",
+        "Vuole una vittoria semplice e veloce? Registra il Suo {0}! È un bel traguardo.",
+        "Registrando il Suo {0}, prende in mano il controllo del Suo successo. Pronto/a a brillare?"
+    ],
+    "warning_reminder_static_messages": [
+        "Il Suo diario è silenzioso oggi! Ogni registrazione La avvicina ai Suoi obiettivi. Se è pronto/a a riprendere e registrare il Suo {0}, siamo qui — altrimenti metteremo in pausa i promemoria.",
+        "Tenere traccia dei Suoi pasti La aiuta a rimanere allineato/a con i Suoi obiettivi. Se sta facendo una pausa, va bene! Se non registra nulla entro domani, sospenderemo i promemoria — ma saremo sempre qui quando sarà pronto/a.",
+        "È passato un po' di tempo dall'ultima registrazione. Ricordi perché ha iniziato! Se non è pronto/a a riprendere, metteremo in pausa i promemoria — al Suo ritmo.",
+        "Ogni abitudine inizia con un piccolo gesto. Se è stato/a impegnato/a, lo capiamo perfettamente. Se desidera continuare il monitoraggio, registri il Suo {0} oggi — altrimenti faremo una pausa domani.",
+        "Solo una piccola verifica! Se continua con il monitoraggio, non dimentichi il Suo {0} oggi. Se la Sua agenda ha preso il sopravvento, ridurremo i promemoria dopo domani — e potrà tornare quando desidera.",
+        "Nessun pasto registrato recentemente? Nessun problema! Un piccolo promemoria amichevole per registrare il Suo {0}. Altrimenti, faremo una pausa da domani — e potrà riprendere quando preferisce.",
+        "La vita è frenetica — lo comprendiamo! Se il monitoraggio fa ancora parte della Sua routine, si ricordi di registrare il Suo {0} oggi. Altrimenti, sospenderemo qui per Lei quando sarà pronto/a a tornare.",
+        "La regolarità conta, ma anche la flessibilità! Se desidera continuare a monitorare, registra il Suo {0} oggi. Altrimenti sospenderemo i promemoria da domani — potrà riprendere in qualsiasi momento.",
+        "Il Suo diario alimentare è vuoto oggi! Tenere traccia dei pasti può sembrare insignificante, ma è importante. Se non registra nulla presto, sospenderemo i promemoria per Lei.",
+        "Siamo qui per supportarLa! Se il monitoraggio dei Suoi pasti è ancora importante per Lei, non dimentichi il Suo {0}. Altrimenti, faremo una pausa domani — e sarà sempre il/la benvenuto/a quando vorrà riprendere."
+    ],
+
+    "meal_types": {
+        "Breakfast": "colazione",
+        "Lunch": "pranzo",
+        "Dinner": "cena"
+    },
+
+    "months": {
+    "01": "Gen",
+    "02": "Feb", 
+    "03": "Mar",
+    "04": "Apr",
+    "05": "Mag",
+    "06": "Giu",
+    "07": "Lug",
+    "08": "Ago",
+    "09": "Set",
+    "10": "Ott",
+    "11": "Nov",
+    "12": "Dic"
+  },
+
+    "summary-main-title": "Rapporto di Analisi Nutrizionale",
+
+    "panel_a": {
+        "panel-title": "Apporto Energetico Giornaliero dei Macronutrienti con Energia Totale",
+        "legend-energy": "Energia Totale",
+        "legend-carbs": "Carboidrati",
+        "legend-carbs-short": "Carbos.",
+        "legend-fat": "Grassi",
+        "legend-protein": "Proteine",
+        "y-axis": "Energia (kcal)",
+        "x-axis": "Data del Pasto",
+        "avg-macros": "Media Macronutrienti"
+
+    },
+
+    "panel_b": {
+        "panel-title": "Apporto Energetico Medio dei Macronutrienti per Periodo del Pasto",
+        "legend-carbs": "Carboidrati (kcal)",
+        "legend-fat": "Grassi (kcal)",
+        "legend-protein": "Proteine (kcal)",
+        "x-axis": "Energia (Kcal)",
+        "snack": "Spuntino \n (15:00-18:00 o cibi <10g)",
+        "late-night-snack": "Spuntino Notturno (23:00-04:00)",
+        "lunch": "Pranzo \n (11:00-15:00)",
+        "dinner": "Cena \n (18:00-23:00)",
+        "breakfast": "Colazione \n (04:00-11:00)"
+    },
+
+    "panel_c": {
+        "panel-title": "Distribuzione degli Orari dei Pasti per Ora"
+    },
+
+    "panel_d": {
+        "panel-title": "Correlazione tra Dimensione del Pasto e Orario",
+        "x-axis": "Ora del Giorno",
+        "y-axis-kcal": "Dimensione dell'Assunzione (kcal)",
+        "y-axis-grams": "Dimensione dell'Assunzione (grammi)",
+        "kcal-title-suffix": "Apporto Energetico",
+        "grams-title-suffix": "Peso del Cibo",
+        "Snack": "Spuntino",
+        "Late Night": "Spuntino Notturno (23:00-04:00)",
+        "Lunch": "Pranzo",
+        "Dinner": "Cena",
+        "Breakfast": "Colazione",
+        "trend": "Tendenza"
+    },
+
+    "panel_e": {
+        "panel-title": "Punteggio dell'Indice di Alimentazione Sana (HEI) nel Tempo",
+        "x-axis": "Data",
+        "y-axis": "Punteggio HEI",
+        "weekday": "Giorni feriali",
+        "weekend": "Fine settimana",
+        "avg-hei-score": "Punteggio HEI Medio",
+        "days-skipped": "Giorni saltati"
+    },
+
+    "panel_f_1": {
+        "panel-title": "Mappa di Calore dei Componenti del Punteggio HEI",
+        "y-axis": "Componente",
+        "scale": "Punteggio HEI (0-5)",
+        "total_fruits": "Frutta Totale",
+        "whole_fruits": "Frutta Intera",
+        "total_vegetables": "Verdure Totali",
+        "greens_and_beans": "Verdure a foglia e legumi",
+        "protein_foods": "Alimenti Proteici",
+        "seafood_plant_proteins": "Proteine da Pesce/Vegetali"
+    },
+
+    "panel_f_2": {
+        "y-axis": "Componente",
+        "x-axis": "Data",
+        "scale": "Punteggio HEI (0-10)",
+        "whole_grains": "Cereali Integrali",
+        "dairy": "Latticini",
+        "fatty_acids": "Acidi Grassi",
+        "refined_grains": "Cereali Raffinati",
+        "sodium": "Sodio",
+        "added_sugars": "Zuccheri Aggiunti",
+        "saturated_fats": "Grassi Saturi"
+    },
+
+    "summaries_recap": {
+        "main-title": "Riepilogo dei Pannelli - Riassunti Dettagliati",
+        "first-section": "Panoramica Macronutrienti ed Energia",
+        "panel-a-section": "Pannello A: Distribuzione di Macronutrienti ed Energia durante lo studio",
+        "panel-b-section": "Pannello B: Tempistica e Distribuzione dei Pasti Giornalieri",
+        "second-section": "Analisi del Programma Alimentare",
+        "panel-c-section": "Pannello C: Schemi del Programma Alimentare",
+        "panel-d-section": "Pannello D: Analisi della Dimensione e Frequenza dei Pasti",
+        "third-section": "Analisi del Punteggio dell'Indice di Alimentazione Sana (HEI)",
+        "panel-e-section": "Pannello E: Valutazione della Qualità della Dieta",
+        "panel-f-1-section": "Pannello F1: Performance dei Nutrienti Benefici",
+        "panel-f-2-section": "Pannello F2: Equilibrio Dietetico e Moderazione"
+    },
+
+    "final-summary-message": "Grazie ancora per la tua partecipazione!",
+
+    "hei_table": {
+        "component": "Componente",
+        "maximum_points": "Punti Massimi",
+        "adequacy_components": "Componenti di Adeguatezza",
+        "total_fruits": "Frutta - Totale",
+        "whole_fruits": "Frutta Intera",
+        "total_vegetables": "Verdure - Totale",
+        "greens_and_beans": "Verdure a Foglia Verde e Legumi",
+        "whole_grains": "Cereali Integrali",
+        "dairy": "Latticini",
+        "total_protein_foods": "Alimenti Proteici - Totale",
+        "seafood_plant_proteins": "Frutti di Mare e Proteine Vegetali",
+        "fatty_acids": "Acidi Grassi",
+        "moderation_components": "Componenti di Moderazione",
+        "refined_grains": "Cereali Raffinati",
+        "sodium": "Sodio",
+        "added_sugars": "Zuccheri Aggiunti",
+        "saturated_fat": "Grassi Saturi"
+    },
+
+    "hei_footnotes": {
+        "notes_title": "Note:",
+        "footnote_a": "Include succhi di frutta al 100%.",
+        "footnote_b": "Include tutte le forme eccetto i succhi.",
+        "footnote_c": "Include fagioli, piselli e lenticchie.",
+        "footnote_d": "Include tutti i prodotti lattiero-caseari, come latte liquido, yogurt e formaggio, e bevande di soia arricchite.",
+        "footnote_e": "Include frutti di mare, noci, semi, prodotti di soia (diversi dalle bevande) e fagioli, piselli e lenticchie.",
+        "footnote_f": "Rapporto di acidi grassi poli- e monoinsaturi (PUFA e MUFA) con acidi grassi saturi (SFA).",
+        "acronyms_explanation": "PUFA = acidi grassi polinsaturi. MUFA = acidi grassi monoinsaturi. SFA = acidi grassi saturi."
+    },
+
+    "ai-disclaimer": "Il resto di questo documento contiene sintesi generate dall'intelligenza artificiale, basate sulle figure presentate nella prima pagina.\n\n Sebbene siano generate dall'IA, queste sintesi si basano sui Suoi dati alimentari registrati in MyFoodRepo e sono allineate con gli obiettivi nutrizionali da Lei definiti all'inizio dello studio.\n\n Il loro scopo è aiutarLa a comprendere meglio le figure e offrire raccomandazioni chiare, pratiche e di supporto per guidare i Suoi progressi alimentari.",
+
+    "hei-calculation-disclaimer": "Nota: I punteggi HEI sono calcolati solo per i giorni in cui l'apporto energetico totale ha superato le 1.000 kcal per garantire una valutazione alimentare affidabile.",
+
+    "hei-explanation": "Per comprendere meglio l’ultima riga di grafici, è importante capire cosa rappresenta l’Indice di Alimentazione Sana (HEI).\n\n L’HEI è una misura della qualità complessiva dell’alimentazione. È composto da 13 componenti che riflettono le principali raccomandazioni dietetiche su cosa costituisce una dieta 'ideale'. Questi componenti si suddividono in due categorie principali:\n\n - I componenti di adeguatezza rappresentano i gruppi alimentari, sottogruppi e nutrienti che dovrebbero essere consumati in quantità sufficienti. Per questi componenti, punteggi più alti indicano assunzioni maggiori (e quindi più desiderabili).\n\n - I componenti di moderazione riflettono i gruppi alimentari e gli elementi dietetici che dovrebbero essere limitati. In questo caso, punteggi più alti indicano assunzioni inferiori, il che è più desiderabile.\n\n Ciascuno dei 13 componenti viene valutato secondo standard specifici, con l’obiettivo di raggiungere un punteggio totale massimo di 100 punti. Alcuni aspetti dell’alimentazione sono rappresentati da due componenti, ciascuno con un massimo di 5 punti, mentre i restanti componenti possono ottenere fino a 10 punti ciascuno.\n Di seguito è riportata una ripartizione dettagliata di tutte le categorie:",
+
+    "ending-mail-subject": "Grazie per la partecipazione – Studio di usabilità MyFoodRepo completato",
+
+    "ending-mail-html-body": "<!DOCTYPE html><html><head><meta charset=\"UTF-8\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"></head><body style=\"font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 16px; line-height: 1.6; color: #2c3e50; margin: 0; padding: 20px;\"><div style=\"max-width: 600px; margin: 0 auto; background-color: #ffffff; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); overflow: hidden;\"><div style=\"background-color: #e6ecfa; color: #2c3e50; padding: 30px 40px; text-align: center; border-bottom: 1px solid #d6dce9;\"><h1 style=\"margin: 0; font-size: 26px; font-weight: 700;\">🎉 Grazie per la Sua partecipazione allo studio MyFoodRepo!</h1></div><div style=\"padding: 40px;\"><p style=\"margin: 0 0 25px 0;\">La ringraziamo per aver preso parte allo <strong>Studio di Usabilità di MyFoodRepo</strong>! Ora che lo studio si è concluso, Le siamo sinceramente grati per il tempo dedicato e il Suo prezioso contributo. Il Suo contributo sarà cruciale per lo sviluppo futuro dell'applicazione.</p><div style=\"background-color: #e8f4fd; border-left: 4px solid #2980b9; padding: 20px; margin: 25px 0; border-radius: 5px;\"><p style=\"margin: 0 0 15px 0; font-weight: 600; color: #2980b9;\">📝 Ci dia il Suo parere</p><p style=\"margin: 0 0 20px 0;\">Le saremmo molto grati se potesse dedicare 10-15 minuti per completare il nostro questionario. Le Sue opinioni ci aiuteranno a migliorare l'applicazione.</p><div style=\"text-align: center;\"><a href=\"https://forms.gle/fFQU8yXERTW8sFAK8\" style=\"display: inline-block; background: #ffffff; color: #2980b9; padding: 12px 30px; text-decoration: none; border: 2px solid #2980b9; border-radius: 25px; font-weight: 600; font-size: 16px; transition: background 0.3s, color 0.3s;\">Compili il questionario</a></div></div><div style=\"background-color: #fff8e5; border-left: 4px solid #856404; padding: 20px; margin: 25px 0; border-radius: 5px;\"><p style=\"margin: 0; color: #856404;\"><strong>📊 Il Suo riepilogo dietetico personalizzato</strong><br>Riceverà il Suo riepilogo personalizzato degli ultimi 14 giorni via email nei prossimi giorni.</p></div><p style=\"margin: 30px 0 0 0; color: #2c3e50;\">Le auguriamo tutto il meglio e ci auguriamo che abbia trovato lo studio interessante!</p></div><div style=\"background-color: #ecf0f1; color: #2c3e50; padding: 25px 40px; text-align: center;\"><p style=\"margin: 0; font-size: 16px;\">Cordiali saluti,</p><p style=\"margin: 5px 0 0 0; font-weight: 600; font-size: 18px;\">Il team dello studio MyFoodRepo</p></div></div></body></html>",
+
+    "report-mail-subject": "Il Suo riepilogo nutrizionale personale – Studio MyFoodRepo",
+    "report-name": "RapportoPersonale.pdf",
+    "report-mail-html-body": "<!DOCTYPE html><html><head><meta charset=\"UTF-8\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"></head><body style=\"font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 16px; line-height: 1.6; color: #2c3e50; margin: 0; padding: 20px;\"><div style=\"max-width: 600px; margin: 0 auto; background-color: #ffffff; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); overflow: hidden;\"><div style=\"background-color: #e8f4fd; color: #2c3e50; padding: 30px 40px; text-align: center; border-bottom: 1px solid #bdd9f2;\"><h1 style=\"margin: 0; font-size: 26px; font-weight: 700;\">📊 Il Suo riepilogo nutrizionale personale</h1></div><div style=\"padding: 40px;\"><p style=\"margin: 0 0 25px 0;\">Siamo lieti di inviarLe il Suo riepilogo nutrizionale personalizzato, basato sui 14 giorni di partecipazione allo studio MyFoodRepo. Questo rapporto completo fornisce approfondimenti sulle Sue abitudini alimentari e sull’assunzione nutrizionale durante il periodo di studio.</p><div style=\"background-color: #f8f9fa; border: 2px solid #2980b9; padding: 25px; margin: 25px 0; border-radius: 8px; text-align: center;\"><p style=\"margin: 0 0 15px 0; font-weight: 600; color: #2980b9; font-size: 18px;\">📎 Il Suo rapporto nutrizionale</p><p style=\"margin: 0; color: #2c3e50;\">Troverà il Suo riepilogo nutrizionale dettagliato allegato a questa e-mail come documento PDF.</p></div><div style=\"background-color: #e8f8f5; border-left: 4px solid #27ae60; padding: 20px; margin: 25px 0; border-radius: 5px;\"><p style=\"margin: 0 0 15px 0; font-weight: 600; color: #27ae60;\">📋 Contenuto del rapporto:</p><ul style=\"margin: 0; padding-left: 20px; color: #2c3e50;\"><li style=\"margin-bottom: 8px;\">Ripartizione dei macronutrienti (proteine, carboidrati, grassi)</li><li style=\"margin-bottom: 8px;\">Frequenza e dimensioni dei pasti</li><li style=\"margin-bottom: 8px;\">Valutazione della qualità complessiva della dieta</li><li style=\"margin-bottom: 8px;\">Raccomandazioni e riepiloghi personalizzati</li></ul></div><p style=\"margin: 15px 0 25px 0; font-size: 14px; color: #2980b9;\"><strong>ℹ️ Nota:</strong> Il rapporto includerà la valutazione della qualità complessiva della dieta solo se, durante il periodo di studio, sono stati registrati abbastanza giorni con un apporto superiore a 1000 kCal.</p><div style=\"background-color: #fff3cd; border-left: 4px solid #856404; padding: 20px; margin: 25px 0; border-radius: 5px;\"><p style=\"margin: 0; color: #856404;\"><strong>⚠️ Nota importante:</strong><br>Questo riepilogo non sostituisce il parere medico o dietetico professionale. Per consigli nutrizionali personalizzati, La invitiamo a consultare dei professionisti della salute.</p></div><p style=\"margin: 30px 0 20px 0; background-color: #f0f8ff; padding: 15px; border-radius: 5px; color: #2c3e50;\">💡 <strong>Desidera continuare a utilizzare l’app?</strong> MyFoodRepo è ora disponibile al grande pubblico – visiti <a href=\"https://www.myfoodrepo.ai/en\" style=\"color: #2980b9; text-decoration: none; font-weight: 600;\">www.myfoodrepo.ai/en</a> per saperne di più sul nostro servizio di abbonamento mensile. Si noti che i dati raccolti nello studio non possono essere trasferiti a un abbonamento pubblico.</p><p style=\"margin: 0 0 0 0; color: #2c3e50;\">La ringraziamo ancora per la Sua preziosa partecipazione al nostro studio!</p></div><div style=\"background-color: #ecf0f1; color: #2c3e50; padding: 25px 40px; text-align: center;\"><p style=\"margin: 0; font-size: 16px;\">Cordiali saluti,</p><p style=\"margin: 5px 0 0 0; font-weight: 600; font-size: 18px;\">Il team di ricerca MyFoodRepo</p><p style=\"margin: 15px 0 0 0; font-size: 14px; color: #7f8c8d;\">Domande? Ci contatti a: marcel.salathe@epfl.ch</p></div></div></body></html>"
+
+
+
+
+}
+
+
